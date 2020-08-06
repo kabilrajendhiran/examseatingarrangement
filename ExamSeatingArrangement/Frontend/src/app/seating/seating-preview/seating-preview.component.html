@@ -1,0 +1,331 @@
+<div class="jumbotron jumbotron-heading">
+  <div class="container">
+    <h1 class="display-4"> <i class="fa fa-eye" aria-hidden="true"></i>Seating Preview</h1>
+  </div>
+</div>
+
+<div class="container container-custom">
+  <div class="row">
+<form #datesessionform="ngForm" class="form-inline mb-5">
+  <div class="form-group">
+
+      <select name="session" id="session" class="form-control control" ngModel (change)="onSubmitSession()">
+          <option value="" disabled selected>Exam Session</option>
+          <option value="FN">FN</option>
+          <option value="AN">AN</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+
+      <select name="examdate" id="examdate"  ngModel class="form-control control">
+        <option value="" disabled selected>Exam Date</option>
+        <option *ngFor="let date of dates" [value]="date" >{{date}}</option>
+      </select>
+  </div>
+  <button (click)="onSubmitDate()" class="btn btn-primary control">Submit</button>
+</form>
+  </div>
+
+<div *ngIf="seatings">
+  <form #seatform="ngForm"  >
+<div *ngFor="let seat of seatings  ;index as i">
+
+
+  <div *ngIf="i%25==0" >
+
+    <select class="form-control roomnumberselect" #roomoption name="seatno" ngModel>
+      <option *ngFor="let room of roomNumber" value="{{room.roomName}}">{{room.roomName}}</option>
+    </select>
+
+  <div > <!--ngModelGroup="rooms" -->
+    <div > <!--ngModelGroup="halls" -->
+    <div ><!--ngModelGroup="room {{i/25}}" -->
+
+
+      <div class="seat-table">
+        <table class="table table-bordered text-center">
+        <thead class="thead-dark">
+        <tr>
+          <th>A</th>
+          <th>B</th>
+          <th>C</th>
+          <th>D</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+
+          <!--Row 1 -->
+
+            <tr>
+              <td>
+                <div ngModelGroup="cell{{i}}">
+                    <input *ngIf="seatings[i].id" name="registernumber" type="text" [(ngModel)]="seatings[i].registerNumber">
+                    <input *ngIf="seatings[i].id" type="text" name="seatnumber" [(ngModel)]="seatings[i].seatNumber"  readonly>
+                    <input name="hall" value="{{roomoption.value}}" [(ngModel)]="roomoption.value"  *ngIf="seatings[i].id" type="text"  readonly >
+                </div>
+              </td>
+
+
+              <td>
+                <div ngModelGroup="extracell1{{i/25}}">
+                    <input name="registernumber" type="text" ngModel>
+                    <input name="seatnumber" type="text" ngModel="B1" readonly>
+                    <input name="hall" value="{{roomoption.value}}" [(ngModel)]="roomoption.value"  type="text"   readonly>
+                </div>
+               </td>
+
+
+
+              <td>
+                <div ngModelGroup="extracell2{{i/25+1}}">
+                    <input name="registernumber" type="text" ngModel>
+                    <input name="seatnumber" type="text" ngModel="C1" readonly>
+                    <input name="hall" value="{{roomoption.value}}" [(ngModel)]="roomoption.value"  type="text"   readonly>
+                </div>
+              </td>
+
+
+              <div ngModelGroup="extracell3{{i/25+2}}">
+                  <td>
+                    <input name="registernumber" type="text" ngModel>
+                    <input name="seatnumber" type="text" ngModel="D1" readonly>
+                    <input name="hall" value="{{roomoption.value}}" [(ngModel)]="roomoption.value"  type="text"   readonly>
+                  </td>
+              </div>
+
+            </tr>
+
+        <!--Row 2 -->
+
+            <tr>
+              <td>
+                <div ngModelGroup="cell{{i+1}}">
+                    <input *ngIf="seatings[i+1]" name="registernumber" type="text" [(ngModel)]="seatings[i+1].registerNumber">
+                    <input *ngIf="seatings[i+1]" type="text" name="seatnumber" [(ngModel)]="seatings[i+1].seatNumber"   readonly>
+                    <input *ngIf="seatings[i+1]" type="text" name="hall"  [(ngModel)]="roomoption.value"  readonly>
+                </div>
+              </td>
+              <td>
+                <div ngModelGroup="cell{{i+12}}">
+                    <input *ngIf="seatings[i+12]" name="registernumber" type="text" [(ngModel)]="seatings[i+12].registerNumber">
+                    <input *ngIf="seatings[i+12]" type="text" name="seatnumber" [(ngModel)]="seatings[i+12].seatNumber"  readonly>
+                    <input *ngIf="seatings[i+12]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+13}}">
+                <input *ngIf="seatings[i+13]" name="registernumber" type="text" [(ngModel)]="seatings[i+13].registerNumber">
+                <input *ngIf="seatings[i+13]" type="text" name="seatnumber"[(ngModel)]="seatings[i+13].seatNumber" readonly >
+                <input *ngIf="seatings[i+13]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+24}}">
+                <input *ngIf="seatings[i+24]" name="registernumber" type="text" [(ngModel)]="seatings[i+24].registerNumber">
+                <input *ngIf="seatings[i+24]" type="text" name="seatnumber" [(ngModel)]="seatings[i+24].seatNumber"  readonly>
+                <input *ngIf="seatings[i+24]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+            </tr>
+
+        <!--Row 3 -->
+
+            <tr>
+              <td>
+                <div ngModelGroup="cell{{i+2}}">
+                <input *ngIf="seatings[i+2]" name="registernumber" type="text" [(ngModel)]="seatings[i+2].registerNumber">
+                <input *ngIf="seatings[i+2]" type="text" name="seatnumber" [(ngModel)]="seatings[i+2].seatNumber"  readonly>
+                <input *ngIf="seatings[i+2]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+11}}">
+                <input *ngIf="seatings[i+11]" name="registernumber" type="text" [(ngModel)]="seatings[i+11].registerNumber">
+                <input *ngIf="seatings[i+11]" type="text" name="seatnumber" [(ngModel)]="seatings[i+11].seatNumber"  readonly>
+                <input *ngIf="seatings[i+11]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+14}}">
+                <input *ngIf="seatings[i+14]" name="registernumber" type="text" [(ngModel)]="seatings[i+14].registerNumber">
+                <input *ngIf="seatings[i+14]" type="text" name="seatnumber" [(ngModel)]="seatings[i+14].seatNumber"  readonly>
+                <input *ngIf="seatings[i+14]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+23}}">
+                <input *ngIf="seatings[i+23]" name="registernumber" type="text" [(ngModel)]="seatings[i+23].registerNumber">
+                <input *ngIf="seatings[i+23]" type="text" name="seatnumber" [(ngModel)]="seatings[i+23].seatNumber"  readonly>
+                <input *ngIf="seatings[i+23]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+            </tr>
+
+        <!--Row 4 -->
+
+            <tr>
+              <td>
+                <div ngModelGroup="cell{{i+3}}">
+                <input *ngIf="seatings[i+3]" name="registernumber" type="text" [(ngModel)]="seatings[i+3].registerNumber">
+                <input *ngIf="seatings[i+3]" type="text" name="seatnumber" [(ngModel)]="seatings[i+3].seatNumber"  readonly>
+                <input *ngIf="seatings[i+3]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+10}}">
+                <input *ngIf="seatings[i+10]" name="registernumber" type="text" [(ngModel)]="seatings[i+10].registerNumber">
+                <input *ngIf="seatings[i+10]" type="text" name="seatnumber" [(ngModel)]="seatings[i+10].seatNumber" readonly>
+                <input *ngIf="seatings[i+10]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+15}}">
+                <input *ngIf="seatings[i+15]" name="registernumber" type="text" [(ngModel)]="seatings[i+15].registerNumber">
+                <input *ngIf="seatings[i+15]" type="text" name="seatnumber" [(ngModel)]="seatings[i+15].seatNumber"  readonly>
+                <input *ngIf="seatings[i+15]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+22}}">
+                <input *ngIf="seatings[i+22]" name="registernumber" type="text" [(ngModel)]="seatings[i+22].registerNumber">
+                <input *ngIf="seatings[i+22]" type="text" name="seatnumber" [(ngModel)]="seatings[i+22].seatNumber"  readonly>
+                <input *ngIf="seatings[i+22]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+            </tr>
+
+        <!--Row 5 -->
+
+            <tr>
+              <td>
+                <div ngModelGroup="cell{{i+4}}">
+                <input *ngIf="seatings[i+4]" name="registernumber" type="text" [(ngModel)]="seatings[i+4].registerNumber">
+                <input *ngIf="seatings[i+4]" type="text" name="seatnumber" [(ngModel)]="seatings[i+4].seatNumber" readonly >
+                <input *ngIf="seatings[i+4]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+               </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+9}}">
+                <input *ngIf="seatings[i+9]" name="registernumber" type="text" [(ngModel)]="seatings[i+9].registerNumber">
+                <input *ngIf="seatings[i+9]" type="text" name="seatnumber" [(ngModel)]="seatings[i+9].seatNumber" readonly >
+                <input *ngIf="seatings[i+9]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+               </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+16}}">
+                <input *ngIf="seatings[i+16]" name="registernumber" type="text" [(ngModel)]="seatings[i+16].registerNumber">
+                <input *ngIf="seatings[i+16]" type="text" name="seatnumber" [(ngModel)]="seatings[i+16].seatNumber"  readonly>
+                <input *ngIf="seatings[i+16]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+21}}">
+                <input *ngIf="seatings[i+21]" name="registernumber" type="text" [(ngModel)]="seatings[i+21].registerNumber">
+                <input *ngIf="seatings[i+21]" type="text" name="seatnumber" [(ngModel)]="seatings[i+21].seatNumber" readonly >
+                <input *ngIf="seatings[i+21]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+               </div>
+              </td>
+            </tr>
+
+        <!--Row 6 -->
+
+            <tr>
+              <td>
+                <div ngModelGroup="cell{{i+5}}">
+                <input *ngIf="seatings[i+5]" name="registernumber" type="text" [(ngModel)]="seatings[i+5].registerNumber">
+                <input *ngIf="seatings[i+5]" type="text" name="seatnumber" [(ngModel)]="seatings[i+5].seatNumber"  readonly>
+                <input *ngIf="seatings[i+5]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+8}}">
+                <input *ngIf="seatings[i+8]" name="registernumber" type="text" [(ngModel)]="seatings[i+8].registerNumber">
+                <input *ngIf="seatings[i+8]" type="text" name="seatnumber" [(ngModel)]="seatings[i+8].seatNumber"  readonly>
+                <input *ngIf="seatings[i+8]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+17}}">
+                <input *ngIf="seatings[i+17]" name="registernumber" type="text" [(ngModel)]="seatings[i+17].registerNumber">
+                <input *ngIf="seatings[i+17]" type="text" name="seatnumber" [(ngModel)]="seatings[i+17].seatNumber"  readonly>
+                <input *ngIf="seatings[i+17]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+20}}">
+                <input *ngIf="seatings[i+20]" name="registernumber" type="text" [(ngModel)]="seatings[i+20].registerNumber">
+                <input *ngIf="seatings[i+20]" type="text" name="seatnumber" [(ngModel)]="seatings[i+20].seatNumber"  readonly>
+                <input *ngIf="seatings[i+20]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+            </tr>
+
+        <!--Row 7 -->
+
+            <tr>
+              <td>
+                <div ngModelGroup="cell{{i+6}}">
+                <input *ngIf="seatings[i+6]" name="registernumber" type="text" [(ngModel)]="seatings[i+6].registerNumber">
+                <input *ngIf="seatings[i+6]" type="text" name="seatnumber" [(ngModel)]="seatings[i+6].seatNumber" readonly >
+                <input *ngIf="seatings[i+6]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+7}}">
+                <input *ngIf="seatings[i+7]" name="registernumber" type="text" [(ngModel)]="seatings[i+7].registerNumber">
+                <input *ngIf="seatings[i+7]" type="text" name="seatnumber" [(ngModel)]="seatings[i+7].seatNumber" readonly >
+                <input *ngIf="seatings[i+7]" type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+18}}">
+                <input *ngIf="seatings[i+18]" name="registernumber" type="text" [(ngModel)]="seatings[i+18].registerNumber">
+                <input *ngIf="seatings[i+18]"  type="text" name="seatnumber" [(ngModel)]="seatings[i+18].seatNumber" readonly >
+                <input *ngIf="seatings[i+18]"  type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+
+              <td>
+                <div ngModelGroup="cell{{i+19}}">
+                <input *ngIf="seatings[i+19]" name="registernumber" type="text" [(ngModel)]="seatings[i+19].registerNumber">
+                <input *ngIf="seatings[i+19]"  type="text" name="seatnumber" [(ngModel)]="seatings[i+19].seatNumber" readonly >
+                <input *ngIf="seatings[i+19]"  type="text" name="hall" [(ngModel)]="roomoption.value" readonly>
+                </div>
+              </td>
+            </tr>
+
+
+
+        </tbody>
+      </table>
+      </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+  </div>
+  </form>
+</div>
+  <button  type="submit" class="btn btn-primary btn-lg mt-5" (click)="onSubmit()">Submit Preview</button>
+</div>

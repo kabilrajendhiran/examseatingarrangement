@@ -1,0 +1,125 @@
+span{
+  font-weight: bolder;
+  margin-right: 2px;
+  border-right: 1px solid lightgray;
+
+}
+
+.seat-table{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.form-control{
+  width: 200px;
+}
+
+.final-table{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+
+.report-table{
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.righttop{
+  position: relative;
+  border:1px solid ;
+  margin-left: 75%;
+  margin-right: 1%;
+  margin-bottom: 10px;
+}
+
+.date_and_session{
+  position: relative;
+  border: 1px solid;
+  width: 100%;
+  text-align: center;
+}
+
+.collegename,.examination_month_year{
+  position: relative;
+  border: 1px solid;
+  width: 100%;
+  text-align: center;
+}
+
+.hallnumber{
+  border: none;
+}
+
+.exam-hall-details{
+  width: 100%;
+  border: 1px solid;
+}
+
+#print-section{
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+   box-sizing: content-box !important;
+}
+
+.container-fluid{
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+  padding: 0 !important;
+}
+
+.pdf-btn{
+  height: fit-content;
+}
+
+th{
+  background-color: #343a40 !important;
+  color: #ffffff;
+}
+
+
+
+/*
+table { page-break-inside:avoid }
+tr    { page-break-inside:avoid; page-break-after:avoid }
+thead { display:table-header-group }
+tfoot { display:table-footer-group }
+*/
+
+
+.final-table{
+
+  page-break-after : always !important;
+}
+
+
+
+@media print {
+  button{
+    display: none;
+  }
+  .final-table{
+    page-break-after : always !important;
+  }
+
+
+
+
+  /*th{
+    color: white !important;
+  }
+
+  thead th,thead tr{
+    border: #575757 1px solid !important;
+  }*/
+
+
+}
+
+

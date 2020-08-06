@@ -1,0 +1,140 @@
+<div class="jumbotron jumbotron-heading">
+  <div class="container">
+    <h1 class="display-4"> <i class="fa fa-anchor"></i>Seating Final</h1>
+  </div>
+</div>
+
+<div class="container container-custom">
+  <div class="row" >
+
+
+    <div class="col">
+<form #datesessionform="ngForm" class="form-inline">
+  <select name="session" id="session" class="form-control" ngModel (change)="onSubmitSession()">
+    <option value="FN">FN</option>
+    <option value="AN">AN</option>
+  </select>
+
+  <select name="examdate" id="examdate"  ngModel class="form-control">
+    <option *ngFor="let date of dates" [value]="date" >{{date}}</option>
+  </select>
+
+  <button class="form-control btn btn-primary" (click)="onSubmitDate()">Submit</button>
+  <button class="btn btn-danger"  [useExistingCss]="true" printSectionId="print-section" ngxPrint>PDF</button>
+</form>
+
+    </div>
+  </div>
+
+  <div class="container-fluid print-div" id="print-section">
+
+<div id="print-section{{i}}" *ngFor="let seatdetails of seatingarrangementdata?.seatingArrangement; index as i" class="row final-table">
+
+ <!-- <div>
+    {{seatdetails?.date}}
+  </div>
+
+  <div>
+    {{seatdetails?.session}}
+  </div>-->
+
+
+  <section class="righttop">
+   <span class="hallnumber">HALL NO-</span> {{seatdetails?.roomNumber}}
+  </section>
+
+  <section class="exam-hall-details">
+  <div class="examination_month_year">
+    ANNA UNIVERSITY EXAMINATIONS - {{seatingarrangementdata?.semesterMonth}}{{seatdetails?.date |slice: 6}}
+  </div>
+
+  <div class="collegename">
+    8124 - M.I.E.T Engineering College ,  Trichy -7
+  </div>
+
+  <div class="date_and_session">
+
+      {{seatdetails?.date}} | {{seatdetails?.session}}
+
+  </div>
+</section>
+
+
+   <table class="table seating-table table-bordered table-striped ">
+
+     <thead class="thead-dark">
+       <tr>
+         <th></th><th>A</th>
+         <th></th><th>B</th>
+         <th></th><th>C</th>
+         <th></th><th>D</th>
+       </tr>
+     </thead>
+     <tbody>
+     <tr>
+       <td>A1</td><td>{{seatdetails?.seatandRegisterNumber?.A1}}</td>
+       <td>B1</td><td>{{seatdetails?.seatandRegisterNumber?.B1}}</td>
+       <td>C1</td><td>{{seatdetails?.seatandRegisterNumber?.C1}}</td>
+       <td>D1</td><td>{{seatdetails?.seatandRegisterNumber?.D1}}</td>
+     </tr>
+     <tr>
+       <td>A2</td><td>{{seatdetails?.seatandRegisterNumber?.A2}}</td>
+       <td>B2</td><td>{{seatdetails?.seatandRegisterNumber?.B2}}</td>
+       <td>C2</td><td>{{seatdetails?.seatandRegisterNumber?.C2}}</td>
+       <td>D2</td><td>{{seatdetails?.seatandRegisterNumber?.D2}}</td>
+     </tr>
+     <tr>
+       <td>A3</td><td>{{seatdetails?.seatandRegisterNumber?.A3}}</td>
+       <td>B3</td><td>{{seatdetails?.seatandRegisterNumber?.B3}}</td>
+       <td>C3</td><td>{{seatdetails?.seatandRegisterNumber?.C3}}</td>
+       <td>D3</td><td>{{seatdetails?.seatandRegisterNumber?.D3}}</td>
+     </tr>
+     <tr>
+       <td>A4</td><td>{{seatdetails?.seatandRegisterNumber?.A4}}</td>
+       <td>B4</td><td>{{seatdetails?.seatandRegisterNumber?.B4}}</td>
+       <td>C4</td><td>{{seatdetails?.seatandRegisterNumber?.C4}}</td>
+       <td>D4</td><td>{{seatdetails?.seatandRegisterNumber?.D4}}</td>
+     </tr>
+     <tr>
+       <td>A5</td><td>{{seatdetails?.seatandRegisterNumber?.A5}}</td>
+       <td>B5</td><td>{{seatdetails?.seatandRegisterNumber?.B5}}</td>
+       <td>C5</td><td>{{seatdetails?.seatandRegisterNumber?.C5}}</td>
+       <td>D5</td><td>{{seatdetails?.seatandRegisterNumber?.D5}}</td>
+     </tr>
+     <tr>
+       <td>A6</td><td>{{seatdetails?.seatandRegisterNumber?.A6}}</td>
+       <td>B6</td><td>{{seatdetails?.seatandRegisterNumber?.B6}}</td>
+       <td>C6</td><td>{{seatdetails?.seatandRegisterNumber?.C6}}</td>
+       <td>D6</td><td>{{seatdetails?.seatandRegisterNumber?.D6}}</td>
+     </tr>
+     <tr>
+       <td>A7</td><td>{{seatdetails?.seatandRegisterNumber?.A7}}</td>
+       <td>B7</td><td>{{seatdetails?.seatandRegisterNumber?.B7}}</td>
+       <td>C7</td><td>{{seatdetails?.seatandRegisterNumber?.C7}}</td>
+       <td>D7</td><td>{{seatdetails?.seatandRegisterNumber?.D7}}</td>
+     </tr>
+     </tbody>
+
+   </table>
+
+
+  <table class="table table-bordered table-striped report-table">
+    <thead class="thead-dark">
+      <tr>
+        <th>SubjectCode(Department)</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let r of seatdetails?.report">
+        <td>{{r?.subjectCode}}({{r?.shortForm}})</td>
+        <td>{{r?.count}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <button class="btn btn-danger pdf-btn" [useExistingCss]="true" printSectionId="print-section{{i}}" ngxPrint>PDF</button>
+</div>
+  </div>
+</div>

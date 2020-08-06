@@ -1,0 +1,61 @@
+<div class="jumbotron jumbotron-heading">
+  <div class="container">
+    <h1 class="display-4"> <i class="fa fa-sticky-note" aria-hidden="true"></i>Notice Board</h1>
+  </div>
+</div>
+
+<div class="container notice-board-container container-custom">
+  <div class="row notice-board-form-row">
+    <form #datesessionform="ngForm" class="form-inline">
+      <select name="session" id="session" class="form-control custom-form-control" ngModel (change)="onSubmitSession()">
+        <option value="FN">FN</option>
+        <option value="AN">AN</option>
+      </select>
+
+      <select name="examdate" id="examdate"  ngModel class="form-control custom-form-control">
+        <option *ngFor="let date of dates" [value]="date" >{{date}}</option>
+      </select>
+
+      <button class="form-control custom-form-control btn btn-primary" (click)="onSubmitDate()">Submit</button>
+    </form>
+    <button class="btn btn-danger" [useExistingCss]="true" printSectionId="print-section" ngxPrint>PDF</button>
+  </div>
+
+  <div class="row">
+    <div class="col">
+
+
+      <div id="print-section">
+       <div *ngFor="let data of noticeboard">
+         <table class="table  table-bordered " >
+            <thead class="thead-light">
+                <tr>
+                  <th class="roomnumber">Room No.</th>
+                  <th class="dept">Department</th>
+                  <th class="subjectcode">Subject Code</th>
+                  <th class="regnumber">Register Number</th>
+                  <th class="count">Count</th>
+                </tr>
+            </thead>
+           <tbody>
+                <tr>
+                  <td rowspan="0">{{data?.roomNumber}}</td>
+                </tr>
+
+                <tr *ngFor="let d of data?.details">
+
+                  <td>{{d?.shortForm}}</td>
+                  <td>{{d?.subjectCode}}</td>
+                  <td>{{d?.range}}</td>
+                  <td>{{d?.count}}</td>
+                </tr>
+
+           </tbody>
+
+         </table>
+
+       </div>
+     </div>
+    </div>
+  </div>
+</div>

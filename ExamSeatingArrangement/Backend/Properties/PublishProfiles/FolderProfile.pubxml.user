@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\demo\host</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=localhost%3bPort=3306%3bDatabase=seatingdb%3bUid=appuser%3bPwd=captainkabil%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <File Include="Storage/pdf.pdf">
+      <publishTime>07/13/2020 09:23:08</publishTime>
+    </File>
+    <File Include="Storage/pdf1.pdf">
+      <publishTime>07/07/2020 20:45:04</publishTime>
+    </File>
+    <File Include="Storage/ProfilePic/15Tl6gDt15.jpg">
+      <publishTime>07/07/2020 13:31:22</publishTime>
+    </File>
+    <File Include="Storage/ProfilePic/28L1cilqabout.jpg">
+      <publishTime>06/26/2020 20:55:42</publishTime>
+    </File>
+    <File Include="Storage/ProfilePic/avatar.png">
+      <publishTime>06/09/2020 21:26:18</publishTime>
+    </File>
+    <File Include="Storage/ProfilePic/eI4ZAplxkabil.jpeg">
+      <publishTime>06/27/2020 11:38:29</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

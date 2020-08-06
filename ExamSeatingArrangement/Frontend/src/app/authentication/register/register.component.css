@@ -1,0 +1,42 @@
+.file-upload{
+    background-image: url("../../../assets/img/draganddrop.png");
+    background-repeat: no-repeat;
+    z-index: 10;
+    height: 100px;
+    cursor: pointer;
+
+}
+
+.file-upload input{
+  visibility: hidden !important;
+}
+
+.upload-section .file-upload-label{
+  display: inline-block;
+  float: left;
+  clear: right;
+}
+
+.upload-section .file-upload{
+  display: inline-block;
+
+}
+.form{
+  padding: 15px;
+}
+
+button{
+  border-radius: 0 !important;
+}
+
+.card{
+  border-radius: 0 !important;
+
+}
+
+.file-name{
+  display: block;
+}
+
+
+

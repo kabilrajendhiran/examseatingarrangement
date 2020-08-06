@@ -1,0 +1,58 @@
+.card-custom{
+  width: 186px !important;
+  height: 186px !important;
+  margin-bottom: 5px;
+}
+
+.vertical-center-text{
+  padding-top: 21%;
+}
+
+.new-room-add-card:hover{
+  border-color: #0275d8;
+  color:#0275d8;
+}
+
+.new-room-add-card:hover .card-header {
+  background-color: rgba(2, 117, 216, 0.18) !important;
+}
+
+.controls-container{
+  margin-top: 15%;
+}
+
+.controls-container .save{
+  margin-right: 1px;
+}
+
+.controls-container .cancel{
+  margin-left: 1px;
+}
+
+.controls-container .roomnameholder{
+  margin-bottom: 10px;
+}
+
+.addbutton{
+  display: block;
+  padding-top: 22%;
+  padding-bottom: 24%;
+}
+
+.card-body-custom{
+  padding: 0;
+  margin: 20px;
+}
+
+.update-room,.delete-room{
+  cursor: pointer;
+}
+
+.update-room:hover{
+  color: #107210 !important;
+}
+
+.delete-room:hover{
+  color: #920503 !important;
+}
+

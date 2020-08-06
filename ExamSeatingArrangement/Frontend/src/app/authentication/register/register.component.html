@@ -1,0 +1,57 @@
+<div class="overlay"></div>
+<div class="background">
+
+    <div class="register-container">
+      <div class="card">
+        <div class="card-header text-center">
+          <h2>Register</h2>
+        </div>
+        <div class="card-body">
+          <form #registerform="ngForm" class="form" (ngSubmit)="onSubmit(registerform)">
+            <div class="form-group">
+              <label for="userName">Enter your name</label>
+              <input #uName required name="userName" ngModel type="text" class="form-control" id="userName" placeholder="Name">
+              <small *ngIf="registerform.controls?.userName?.touched && !uName.validity.valid" class="text-danger">Username must not be empty</small>
+            </div>
+            <div class="form-group">
+              <label for="password" >Enter your password</label>
+              <input #pwdelement (input)="onkeyPress()" required name="password" [(ngModel)]="pwd" type="password" class="form-control" id="password" placeholder="Password">
+              <small class="text-danger" *ngIf="registerform.controls?.password?.touched && pwd.length<9">Password must be greater than 8 characters</small>
+            </div>
+            <div class="form-group">
+              <label for="confirmpassword">Re-type your password</label>
+              <input (input)="onkeyPress()"  required name="confirmpassword" [(ngModel)]="cpwd" type="password" class="form-control" id="confirmpassword" placeholder="Confirm-Password">
+              <small class="text-danger" *ngIf="registerform.controls?.confirmpassword?.touched && !equalornot">Passwords must match</small>
+            </div>
+            <div class="form-group">
+              <label for="role">Select your role</label>
+              <select #role required ngModel name="role" id="role" class="form-control">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+              </select>
+              <small class="text-danger" *ngIf="!role.validity.valid && registerform.controls?.role.touched">Role must not be empty</small>
+            </div>
+            <div class="form-group">
+              <div class="upload-section">
+                <label class="file-upload-label">
+                  Upload your picture
+                </label>
+                <label class="file-upload">
+                  <input name="profilePic" type="file" (change)="onChange($event)">
+                </label>
+                <span class="file-name">{{this.selectedFileName}}</span>
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <button type="submit" [disabled]="!registerform.valid || !equalornot"  class="btn btn-primary">Submit</button>
+              <button routerLink="/login" class="btn btn-dark">Sign In</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+
+</div>

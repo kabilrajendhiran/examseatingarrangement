@@ -1,0 +1,16 @@
+.usersTable{
+  margin-top: 10%;
+}
+.userimage{
+  margin-right: 10px;
+}
+
+.check:focus,check:active{
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.custom-fa{
+  font-size: 20px;
+}

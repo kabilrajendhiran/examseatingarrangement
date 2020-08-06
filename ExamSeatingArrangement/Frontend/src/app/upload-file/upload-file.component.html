@@ -1,0 +1,18 @@
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-atom" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<div class="jumbotron jumbotron-heading">
+  <div class="container">
+    <h1 class="display-4"> <i class="fa fa-upload"></i> Upload File Panel</h1>
+  </div>
+</div>
+
+<div class="container container-custom">
+
+
+    <form class="form-inline">
+        <div class="form-group">
+          <input class="form-control border-0 form-control-file" name="files" type="file" multiple (change)="onChanges($event)">
+          <input class="btn btn-primary" type="button" (click)="onUpload()" value="Upload">
+        </div>
+    </form>
+</div>

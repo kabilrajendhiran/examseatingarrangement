@@ -1,0 +1,25 @@
+<div class="container-fluid">
+
+ <div class="row">
+  <div  [ngClass]="nav.visible?'col-md-2 col-lg-2 col-xl-2':'empty'">
+      <app-navbar></app-navbar>
+  </div>
+
+
+  <div  [ngClass]="nav.visible ? 'app-col col-md-10 col-lg-10 col-xl-10':'app-col col'"  >
+    <router-outlet>
+    </router-outlet>
+    <toaster-container [toasterconfig]="toast.config">
+    </toaster-container>
+  </div>
+
+
+
+ </div>
+</div>
+
+
+
+
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#ffffff" type = "ball-atom" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>

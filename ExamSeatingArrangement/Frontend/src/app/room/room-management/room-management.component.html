@@ -1,0 +1,60 @@
+<div class="jumbotron jumbotron-heading">
+  <div class="container">
+    <h1 class="display-4"> <i class="fa fa-th-large" aria-hidden="true"></i> Room Management</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div *ngFor="let room of rooms; index as i" [ngClass]="innerWidth<1025 ?'col-3':'col-2'">
+
+      <div class="card card-custom" (mouseenter)="updateRoomToggler(i)" (mouseleave)="updateRoomToggler(i)">
+
+        <div class="card-header">
+          {{i+1}}
+        </div>
+        <div class="card-body text-center card-body-custom ">
+         <div *ngIf="!updateRoomEditorMode[i]">
+              <div>
+                <h2 class="card-text  vertical-center-text">{{room.roomName}}</h2>
+              </div>
+              <div *ngIf="updateRoomOptionsToggle[i]">
+                <h4 class="card-text">
+                  <i class="fa fa-pencil text-success update-room mr-1" (click)="editorModeToggler(i)"  aria-hidden="true"></i>
+                  <i class="fa fa-trash-o text-danger delete-room ml-1" (click)="deleteRoom(room.roomName,i)" aria-hidden="true"></i>
+                </h4>
+              </div>
+         </div>
+          <div *ngIf="updateRoomEditorMode[i]">
+            <input type="text" class="form-control roomnameholder mb-2" [(ngModel)]="room.roomName">
+            <button class="btn btn-success btn-sm save"  (click)="updateRoom(room,i)"><i class="fa fa-check" aria-hidden="true"></i></button>
+            <button class="btn btn-danger btn-sm cancel" (click)="editorModeToggler(i)"><i class="fa fa-times" aria-hidden="true"></i></button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-2">
+      <div class="card card-custom new-room-add-card"  >
+
+        <div class="card-header">
+          New Room
+        </div>
+
+        <div class="card-body text-center ">
+          <div><h2 *ngIf="!addRoomToggle" class="card-text  "><i (click)="addRoomToggler();" class="fa fa-plus addbutton" aria-hidden="true"></i></h2></div>
+          <div *ngIf="addRoomToggle" class="form-group controls-container">
+
+            <input #roomname type="text" class="form-control roomnameholder">
+            <button class="btn btn-success save" (click)="addRoom(roomname.value)"><i class="fa fa-check" aria-hidden="true"></i></button>
+            <button class="btn btn-danger cancel" (click)="addRoomToggler();"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

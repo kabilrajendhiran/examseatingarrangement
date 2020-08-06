@@ -1,0 +1,45 @@
+/*
+.login-container .card-header{
+  background-color: transparent;
+}
+.login-container .card-body{
+  background-color: transparent;
+}
+*/
+
+.card, .card input{
+  background-color:white;
+  border-radius: 0;
+}
+
+.card input:focus{
+  animation-name: highlight;
+  animation-duration: 0.2s;
+  box-shadow: 0px 0px 1px cornflowerblue;
+
+
+}
+
+.card{
+
+}
+
+button{
+  border-radius: 0 !important;
+}
+
+
+@keyframes highlight {
+  0%{
+    box-shadow: 0px 0px 10px cornflowerblue;
+  }
+
+  50%{
+    box-shadow: 0px 0px 25px cornflowerblue;
+  }
+
+  100%{
+    box-shadow: 0px 0px 0px cornflowerblue;
+  }
+}
+

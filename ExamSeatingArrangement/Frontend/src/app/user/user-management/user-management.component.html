@@ -1,0 +1,58 @@
+<div class="container container-custom">
+  <div class="row">
+    <div class="col">
+        <table class="table  table-bordered usersTable">
+          <thead class="thead-dark">
+          <tr>
+            <th>User</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>IsAuthorized</th>
+            <th>Action</th>`
+          </tr>
+          </thead>
+
+          <tbody>
+              <tr *ngFor="let user of users; index as i">
+                <td>
+                  <img class="userimage" src="{{'data:image/jpg;base64,'+user.profilePic?.fileContents }}" width="50" height="50"  alt="data">
+                </td>
+
+                <td>
+                   <div *ngIf="editUserMode[i]"><input class="form-control form-control-sm" name="userName" [(ngModel)]="user.userName" type="text"></div>
+                    <div *ngIf="!editUserMode[i]">{{user.userName}}</div>
+                </td>
+
+                <td >
+                  <div *ngIf="editUserMode[i]">
+                    <select class="form-control form-control-sm" name="role" id="role" [(ngModel)]="user.role">
+                      <option value="admin">admin</option>
+                      <option value="user">user</option>
+                    </select>
+                  </div>
+                  <div *ngIf="!editUserMode[i]">
+                    {{user.role}}
+                  </div>
+
+                </td>
+
+                <td><input class="form-control form-control-sm check" [disabled]="!editUserMode[i]"  name="isAuthorized" type="checkbox" [(ngModel)]="user.isAuthorized" ></td>
+
+                <td >
+                 <div *ngIf="!editUserMode[i]">
+                   <button (click)="toggleEditMode(i)" class="btn btn-outline-primary btn-sm"><i class="fa fa-pencil custom-fa"></i></button>
+                   <button (click)="deleteUser(user.id,user.userName)" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o custom-fa"></i></button>
+                 </div>
+                  <div *ngIf="editUserMode[i]">
+                    <button (click)="toggleEditMode(i)" class="btn btn-outline-danger btn-sm" ><i class="fa fa-close custom-fa"></i></button>
+                    <button (click)="updateUser(user)" class="btn btn-outline-success btn-sm"><i class="fa fa-save custom-fa"></i></button>
+                  </div>
+
+
+                </td>
+              </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

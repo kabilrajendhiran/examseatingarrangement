@@ -1,0 +1,78 @@
+<div class="jumbotron jumbotron-heading">
+  <div class="container">
+    <h1 class="display-4">  <i class="fa fa-pencil" aria-hidden="true"></i>Exams</h1>
+  </div>
+</div>
+
+<div class="container container-custom">
+    <div class="form-single ">
+    <div class="row">
+
+      <div >
+      <form #sessionForm="ngForm" class=" sessionform">
+        <div class="form-group ">
+
+
+        <select id="examsession" name="session" ngModel (change)="onSubmitSession()" class="form-control control">
+          <option value="FN" >FN</option>
+          <option value="AN">AN</option>
+        </select>
+        </div>
+      </form>
+      </div>
+      <div >
+      <form #dateForm="ngForm" class=" dateform">
+       <div class="form-group">
+
+        <select name="examdate" id="examdate"  ngModel class="form-control control ">
+        <option *ngFor="let date of dates" [value]="date" >{{date}}</option>
+      </select>
+
+       </div>
+      </form>
+      </div>
+      <div >
+        <button (click)="onSubmitDate()" class="form-control control btn  btn-primary submit-sd">Submit</button>
+      </div>
+    </div>
+
+    </div>
+
+  <div class="row">
+    <div class="col-12">
+      <form #priorityForm="ngForm" (ngSubmit)="onSubmit()">
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+              <th>Subject Code</th>
+              <th>Subject Name</th>
+              <th>Date</th>
+              <th>Session</th>
+              <th>Count</th>
+              <th>Order</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let exam of exams ;index as i">
+              <td>{{exam.subjectCode}}</td>
+              <td>{{exam.subjectName}}</td>
+              <td>{{exam.date}}</td>
+              <td>{{exam.session}}</td>
+              <td>{{exam.count}}</td>
+              <td>
+
+                <select #sel name="{{exam.id}}" id="{{exam.id}}" ngModel class="form-control">
+                  <option  *ngFor="let exam of exams; index as j" [value]="j+1" >{{j+1}}</option>
+                </select>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+        <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+      </form>
+
+
+    </div>
+  </div>
+</div>

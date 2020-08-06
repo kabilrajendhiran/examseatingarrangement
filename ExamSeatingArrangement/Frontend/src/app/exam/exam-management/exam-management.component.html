@@ -1,0 +1,117 @@
+<div class="jumbotron jumbotron-heading">
+  <div class="container">
+    <h1 class="display-4">  <i class="fa fa-cogs" aria-hidden="true"></i> Exam Management</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mb-2">
+    <div class="col-md-9 ">
+
+    </div>
+    <div class=" col-md-3 ">
+      <button class="btn btn-sm toggle" [ngClass]="examViewToggle ? 'btn-success' : 'btn-outline-success'"  (click)="enableExamWise()">Examwise</button>
+      <button class="btn btn-sm toggle" [ngClass]="!examViewToggle ? 'btn-success' : 'btn-outline-success'" (click)="enableDateWise()">Datewise</button>
+      <button class="btn btn-sm toggle " [ngClass]="!deleteModeToggle ?'btn-outline-danger':'btn-danger'"    *ngIf="!examViewToggle" (click)="deleteModeToggler()">{{!deleteModeToggle?'Delete':'Cancel'}}</button>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col">
+        <div *ngIf="examViewToggle">
+
+          <table class="table table-bordered ">
+            <thead class="thead-dark">
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Date</th>
+                  <th>Session</th>
+                  <th>Edit/Submit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let exam of exams; index as i">
+                  <td >
+                    <span *ngIf="!editorarrayexamwise[i]">{{exam?.subjectCode}}</span>
+                    <span *ngIf="editorarrayexamwise[i]" ><input class="form-control form-control-sm edit" type="text" name="sc{{i}}" [(ngModel)]="exam.subjectCode"></span>
+                  </td>
+
+                  <td >
+                    <span *ngIf="!editorarrayexamwise[i]">{{exam?.subjectName}}</span>
+                    <span *ngIf="editorarrayexamwise[i]"><input class="form-control form-control-sm edit" type="text" name="sn{{i}}" [(ngModel)]="exam.subjectName"></span>
+                  </td>
+
+                  <td >
+                    <span >{{exam?.date}}</span>
+                    <!--<span *ngIf="editorarrayexamwise[i]"><input class="form-control form-control-sm edit" type="text" name="ed{{i}}" [(ngModel)]="exam.date"></span>-->
+                  </td>
+
+                  <td >
+                    <span >{{exam?.session}}</span>
+                    <!--<span *ngIf="editorarray[i]"><input class="form-control form-control-sm edit" type="text" name="se{{i}}" [(ngModel)]="exam.session"></span>-->
+                  </td>
+                  <td>
+                    <button class="btn" [ngClass]="!editorarrayexamwise[i] ?'btn-outline-primary':'btn-outline-danger'" (click)="toggleEditMode(i)"><i [ngClass]="!editorarrayexamwise[i] ? 'fa custom-fa fa-pencil' : 'fa custom-fa fa-close'" ></i></button>
+                    <button class="btn btn-outline-success" (click)="updateExam(exam)"><i class="fa custom-fa fa-save"></i></button>
+                  </td>
+
+                </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+        <div *ngIf="!examViewToggle">
+
+          <table *ngIf="!deleteModeToggle" class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th>SNo.</th>
+                <th>Date</th>
+                <th>Edit/Save</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let model of minexammodel; index as i">
+                  <td>{{i+1}}</td>
+                  <td>
+                    <span *ngIf="!editorarraydatewise[i]">{{model.date}}</span>
+                    <span *ngIf="editorarraydatewise[i]"><input class="form-control" type="text" name="date{{i}}" [(ngModel)]="model.date"></span>
+                    <!--<span *ngIf="editorarraydatewise[i]"><input class="form-control" type="text" name="session{{i}}" [(ngModel)]="model"></span>-->
+                  </td>
+                  <td>
+                    <button class="btn" [ngClass]="!editorarraydatewise[i] ?'btn-outline-primary':'btn-outline-danger'" (click)="toggleEditModeDatewise(i)">
+                      <i [ngClass]="!editorarraydatewise[i] ? 'fa custom-fa fa-pencil' : 'fa custom-fa fa-close'" ></i>
+                    </button>
+                    <button class="btn btn-outline-success" (click)="updateExamDateWise(model)"><i class="fa custom-fa fa-save"></i></button>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+
+          <table *ngIf="deleteModeToggle" class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                  <th>SNo.</th>
+                  <th>Date</th>
+                  <th>Session</th>
+                  <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let model of minexammodelforupdate; index as i">
+                  <td>{{i+1}}</td>
+                  <td>{{model.date}}</td>
+                  <td>{{model.session}}</td>
+                  <td><button class="btn btn-danger btn-sm" (click)="deleteExam(model.date,model.session)"><i class="fa fa-trash-o"></i></button></td>
+                </tr>
+            </tbody>
+          </table>
+
+        </div>
+    </div>
+  </div>
+</div>

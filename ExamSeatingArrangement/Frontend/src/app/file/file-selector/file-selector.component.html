@@ -1,0 +1,44 @@
+<div class="jumbotron jumbotron-heading">
+  <div class="container">
+    <h1 class="display-4"> <i class="fa fa-file"></i>File Selection Panel</h1>
+  </div>
+</div>
+
+
+
+
+<div class="container file-selector-container container-custom">
+  <div class="row">
+    <div class="col-4">
+
+  <form  #formElement="ngForm" (ngSubmit)="onSubmit(formElement)">
+    <label for="fileselector">Select file name</label>
+    <select id="fileselector" class="form-control" (mouseover)="onhoverFileControl()"  ngModel name="fileid" required>
+      <option [value]=filedetail.id *ngFor="let filedetail of filedetails">{{filedetail.fileName}}</option>
+
+    </select>
+
+    <label for="semestermonth">Type semester month</label>
+    <input id="semestermonth" class="form-control" ngModel name="semestermonth" type="text" (mouseover)="onHoverSemesterMonth()" required>
+
+    <label for="examdate">Select exam date</label>
+    <input class="form-control" id="examdate" name="date" type="date" ngModel (mouseover)="onHoverDate()" required>
+    <button class="btn btn-primary" [disabled]="formElement.invalid" type="submit">Submit</button>
+  </form>
+
+    </div>
+    <div class="col-8">
+      <div class="alert alert-info input-info" role="alert">
+        <header>
+            <h4>
+              Information !
+            </h4>
+        </header>
+        <section>
+            {{info}}
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>

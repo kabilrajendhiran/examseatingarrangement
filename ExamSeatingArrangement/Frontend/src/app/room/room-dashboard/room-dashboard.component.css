@@ -1,0 +1,18 @@
+.control{
+  width: 200px;
+}
+
+label{
+  margin-right: 20px;
+}
+
+.card-body-custom{
+  padding: 0;
+  margin: 20px;
+}
+
+.card-custom{
+  width: 186px !important;
+  height: 186px !important;
+  margin-bottom: 5px;
+}

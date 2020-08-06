@@ -1,0 +1,48 @@
+.block .dash-cards{
+  width: 100% !important;
+  height: 44vh !important;
+  margin-bottom: 2vh;
+}
+.card-img-top{
+  height: 100%;
+}
+
+.card-overlay{
+  position: absolute;
+  top:100%;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.7);
+  overflow: hidden;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+}
+
+.custom-card-image{
+ width: 100%;
+ height: 35vh;
+  display: block;
+
+}
+
+.overlay-container{
+  position: relative;
+  width: 100%;
+}
+
+.overlay-container:hover .card-overlay{
+  top: 0;
+  height: 100%;
+}
+
+.overlay-btn{
+  width: 45%;
+  left: 27%;
+  right: 28%;
+  position: inherit;
+  top: 42%;
+
+}
+
+

@@ -1,0 +1,41 @@
+<div class="jumbotron jumbotron-heading">
+  <div class="container">
+    <h1 class="display-4"> <i class="fa fa-wrench"></i> File Management</h1>
+  </div>
+</div>
+
+<div class="container pt-5">
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered ">
+        <thead class="thead-light">
+            <tr>
+              <th>File Name</th>
+              <th>IsFinished</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let filedetail of filedetails">
+              <td>{{filedetail?.fileName}}</td>
+              <td><input type="checkbox" [(ngModel)]="filedetail.isFinished"></td>
+              <td class="td-action">
+                <button class="btn" (click)="getFileForPreview(filedetail.id)"><span class="preview"><i class="fa fa-eye"></i></span></button>
+                <button class="btn" (click)="updateFileStatus(filedetail)"><span class="save"><i class="fa fa-save"></i></span></button>
+                <button class="btn" (click)="deleteFile(filedetail.id)"><span class="trash"><i class="fa fa-trash-o"></i></span></button>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="pdf-section">
+        <ngx-extended-pdf-viewer [base64Src]="pdfSrc?.data?.fileContents" useBrowserLocale="true" height="50vh"></ngx-extended-pdf-viewer>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div>
+
+</div>

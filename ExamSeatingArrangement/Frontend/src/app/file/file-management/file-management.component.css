@@ -1,0 +1,27 @@
+.trash{
+
+  color:crimson;
+}
+.trash,.preview,.save{
+  font-size: 22px;
+}
+
+.save{
+  color:green;
+}
+
+.trash:hover{
+  color:red;
+}
+
+.save:hover{
+  color:darkseagreen;
+}
+
+.preview:hover{
+  color:gray;
+}
+
+.td-action{
+  padding: 0 !important;
+}
